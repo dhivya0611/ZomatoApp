@@ -1,0 +1,100 @@
+import java.util.Scanner;
+
+public class ZomatoApp{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Step 1: Display hotels
+        System.out.println("Welcome to Zomato!");
+		System.out.println("");
+        System.out.println("Choose a hotel:");
+        System.out.println("1. The Spice House (Rating: 4.5)");
+        System.out.println("2. Green Leaf (Rating: 4.2)");
+        System.out.println("3. Urban Feast (Rating: 4.8)");
+
+        int hotelChoice = scanner.nextInt();
+        String hotelName = "";
+        double rating = 0;
+
+        switch (hotelChoice) {
+            case 1:
+                hotelName = "The Spice House";
+                rating = 4.5;
+                break;
+            case 2:
+                hotelName = "Green Leaf";
+                rating = 4.2;
+                break;
+            case 3:
+                hotelName = "Urban Feast";
+                rating = 4.8;
+                break;
+            default:
+                System.out.println("Invalid choice. Exiting.");
+                return;
+        }
+
+        System.out.println("You selected: " + hotelName + " (Rating: " + rating + ")");
+
+        // Step 2: Choose Veg or Non-Veg
+        System.out.println("Select food type:");
+        System.out.println("1. Veg");
+        System.out.println("2. Non-Veg");
+
+        int foodTypeChoice = scanner.nextInt();
+        if (foodTypeChoice != 1 && foodTypeChoice != 2) {
+            System.out.println("Invalid choice. Exiting.");
+            return;
+        }
+
+        String foodType = (foodTypeChoice == 1) ? "Veg" : "Non-Veg";
+        System.out.println("You selected: " + foodType);
+
+        // Step 3: Display varieties
+        System.out.println("Available varieties in " + foodType + ":");
+        if (foodType.equals("Veg")) {
+            System.out.println("1. mushroom biriyani");
+            System.out.println("2. Veg Biryani");
+            System.out.println("3. Veg Manchurian");
+        } else {
+            System.out.println("1. Chicken biriyani");
+            System.out.println("2. Mutton Biryani");
+            System.out.println("3. pepper chicken");
+        }
+
+        int varietyChoice = scanner.nextInt();
+        String selectedDish = "";
+
+        switch (varietyChoice) {
+            case 1:
+                selectedDish = (foodType.equals("Veg")) ? "mushroom biriyani" : "Chicken biriyani";
+                break;
+            case 2:
+                selectedDish = (foodType.equals("Veg")) ? "Veg Biryani" : "Mutton Biryani";
+                break;
+            case 3:
+                selectedDish = (foodType.equals("Veg")) ? "Veg Manchurian" : "pepper chicken";
+                break;
+            default:
+                System.out.println("Invalid choice. Exiting.");
+                return;
+        }
+
+        System.out.println("You selected: " + selectedDish);
+
+        // Step 4: Billing and offers
+        int price = (foodType.equals("Veg")) ? 150 : 250;
+        System.out.println("Billing price for " + selectedDish + ": ₹" + price);
+
+        System.out.println("Checking for offers...");
+        if (rating >= 4.5) {
+            System.out.println("Special Offer: 10% discount!");
+            price = price - (price * 10 / 100);
+        } else {
+            System.out.println("No offers available for this hotel.");
+        }
+
+        System.out.println("Final billing price: ₹" + price);
+        System.out.println("Thank you for using Zomato!");
+    }
+}
